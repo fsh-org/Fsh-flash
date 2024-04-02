@@ -17,7 +17,8 @@
     <script>
       window.RufflePlayer = window.RufflePlayer || {};
       window.RufflePlayer.config = {
-        letterbox: "on"
+        letterbox: "on",
+        scale: "showAll"
       };
       window.addEventListener("load", (event) => {
         const ruffle = window.RufflePlayer.newest();
@@ -72,7 +73,8 @@
           top: 50%;
           left: 50%;
           z-index: 9999999;
-        }`
+        }`;
+        document.getElementById('hint').innerHTML = '';
       }
       function dragLeaveHandler(ev) {
         ev.stopPropagation();
@@ -116,7 +118,7 @@
     <div id="navbar">
       <img src="https://fsh.plus/fsh.png" height="16">
       <label>Fsh</label>
-      <label style="text-align:center">Drop a file to start</label>
+      <label style="text-align:center" id="hint">Drop a file to start</label>
       <label style="text-align:right;margin-right:10px;">Options:</label>
       <button>Fullscreen</button></div>
     <RufflePlayer id="container"></RufflePlayer>
