@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Fsh bot</title>
+    <!-- Boiler plate------ -->
+    <link rel="icon" href="https://fsh.plus/fsh.png" type="image/png">
+    <meta name="description" content="Fsh bot, a multiuse bot with many features.">
+    <!-- ------- -->
+    <link rel="stylesheet" href="https://fsh.plus/NewStyle.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image" content="https://fsh.plus/fsh.png"/>
+    <meta name="theme-color" content="#a89c9b">
+    <!-- ------------------ -->
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <script>
+      window.RufflePlayer = window.RufflePlayer || {};
+      window.RufflePlayer.config = {
+        letterbox: "on"
+      };
+      window.addEventListener("load", (event) => {
+        const ruffle = window.RufflePlayer.newest();
+        const player = ruffle.createPlayer();
+        const container = document.getElementById("container");
+        container.appendChild(player);
+        player.width = window.innerWidth
+        player.height = window.innerHeight
+        window.addEventListener('resize', function(){
+          let nav = document.getElementById("navbar").getBoundingClientRect();
+          player.width = window.innerWidth;
+          player.height = window.innerHeight - nav.height;
+        });
+        window.player = player
+      });
+
+      function dropHandler(ev) {
+        ev.stopPropagation();
+        ev.preventDefault();
+        document.getElementById('style').innerHTML = ``;
+
+        if (ev.dataTransfer.items) {
+          for (let i = 0; i<ev.dataTransfer.items.length; i++) {
+            if (ev.dataTransfer.items[i].kind === "file") {
+              const file = ev.dataTransfer.items[i].getAsFile();
+              if (file.type != 'application/x-shockwave-flash') {
+                alert('File must be shockwave flash')
+                return;
+              }
+              window.player.load(URL.createObjectURL(file));
+            }
+          };
+        } else {
+          ev.dataTransfer.files.forEach((file, i) => {
+            window.player.load(URL.createObjectURL(file));
+          });
+        }
+      }
+
+      function dragOverHandler(ev) {
+        ev.stopPropagation();
+        ev.preventDefault();
+        document.getElementById('style').innerHTML = `#sub {
+          display:block !important;
+          transform: translate(-50%, -50%);
+          padding: 50px;
+          border-radius: 1rem;
+          background-color: #224;
+          text-align: center;
+          font-size: 40px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          z-index: 9999999;
+        }`
+      }
+      function dragLeaveHandler(ev) {
+        ev.stopPropagation();
+        ev.preventDefault();
+        document.getElementById('style').innerHTML = ``;
+      }
+    </script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        transition: 500ms;
+        overflow: hidden;
+      }
+      RufflePlayer {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        --splash-screen-background:#181818;
+      }
+      #navbar {
+        display: flex;
+      }
+      #navbar label {
+        flex: 1;
+      }
+      #navbar button {
+        padding: 0;
+        border-radius: 0;
+        margin-right: 2px;
+      }
+      #sub {
+        display: none;
+      }
+    </style>
+    <style id="style"></style>
+  </head>
+  <body ondrop="dropHandler(event)" ondragover="dragOverHandler(event)" ondragleave="dragLeaveHandler(event)">
+    <div id="sub">Drop swf file anywhere to view</div>
+    <div id="navbar">
+      <img src="https://fsh.plus/fsh.png" height="16">
+      <label>Fsh</label>
+      <label style="text-align:center">Drop a file to start</label>
+      <label style="text-align:right;margin-right:10px;">Options:</label>
+      <button>Fullscreen</button></div>
+    <RufflePlayer id="container"></RufflePlayer>
+  </body>
+</html>
