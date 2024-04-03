@@ -13,8 +13,14 @@
     <meta property="og:image" content="https://fsh.plus/fsh.png"/>
     <meta name="theme-color" content="#a89c9b">
     <!-- ------------------ -->
+    <script src="https://kit.fontawesome.com/50eb963274.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
     <script>
+      function fitScreen() {
+        let nav = document.getElementById("navbar").getBoundingClientRect();
+        player.width = window.innerWidth;
+        player.height = window.innerHeight - nav.height;
+      }
       window.RufflePlayer = window.RufflePlayer || {};
       window.RufflePlayer.config = {
         letterbox: "on",
@@ -25,13 +31,8 @@
         const player = ruffle.createPlayer();
         const container = document.getElementById("container");
         container.appendChild(player);
-        player.width = window.innerWidth
-        player.height = window.innerHeight
-        window.addEventListener('resize', function(){
-          let nav = document.getElementById("navbar").getBoundingClientRect();
-          player.width = window.innerWidth;
-          player.height = window.innerHeight - nav.height;
-        });
+        fitScreen()
+        window.addEventListener('resize', fitScreen());
         window.player = player
       });
 
@@ -49,11 +50,13 @@
                 return;
               }
               window.player.load(URL.createObjectURL(file));
+              fitScreen()
             }
           };
         } else {
           ev.dataTransfer.files.forEach((file, i) => {
             window.player.load(URL.createObjectURL(file));
+            fitScreen()
           });
         }
       }
@@ -106,6 +109,7 @@
         padding: 0;
         border-radius: 0;
         margin-right: 2px;
+        border: none;
       }
       #sub {
         display: none;
@@ -120,7 +124,7 @@
       <label>Fsh</label>
       <label style="text-align:center" id="hint">Drop a file to start</label>
       <label style="text-align:right;margin-right:10px;">Options:</label>
-      <button onclick="window.player.enterFullscreen()">Fullscreen</button></div>
+      <button onclick="window.player.enterFullscreen()" aria-label="fullscreen"><i class="fa-solid fa-expand"></i></button></div>
     <RufflePlayer id="container"></RufflePlayer>
   </body>
 </html>
