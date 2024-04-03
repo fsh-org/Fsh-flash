@@ -13,13 +13,12 @@
     <meta property="og:image" content="https://fsh.plus/fsh.png"/>
     <meta name="theme-color" content="#a89c9b">
     <!-- ------------------ -->
-    <script src="https://kit.fontawesome.com/50eb963274.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
     <script>
-      function fitScreen(player = window.player) {
+      function fitScreen() {
         let nav = document.getElementById("navbar").getBoundingClientRect();
-        player.width = window.innerWidth;
-        player.height = window.innerHeight - nav.height;
+        window.player.width = window.innerWidth;
+        window.player.height = window.innerHeight - nav.height;
       }
       window.RufflePlayer = window.RufflePlayer || {};
       window.RufflePlayer.config = {
@@ -31,9 +30,9 @@
         const player = ruffle.createPlayer();
         const container = document.getElementById("container");
         container.appendChild(player);
-        fitScreen(player)
-        window.addEventListener('resize', fitScreen());
         window.player = player
+        window.addEventListener('resize', fitScreen());
+        fitScreen()
       });
 
       function dropHandler(ev) {
@@ -85,6 +84,7 @@
         document.getElementById('style').innerHTML = ``;
       }
     </script>
+    <script src="https://kit.fontawesome.com/50eb963274.js" crossorigin="anonymous"></script>
     <style>
       body {
         margin: 0;
