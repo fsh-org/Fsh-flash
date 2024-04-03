@@ -16,7 +16,7 @@
     <script src="https://kit.fontawesome.com/50eb963274.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
     <script>
-      function fitScreen() {
+      function fitScreen(player = window.player) {
         let nav = document.getElementById("navbar").getBoundingClientRect();
         player.width = window.innerWidth;
         player.height = window.innerHeight - nav.height;
@@ -31,7 +31,7 @@
         const player = ruffle.createPlayer();
         const container = document.getElementById("container");
         container.appendChild(player);
-        fitScreen()
+        fitScreen(player)
         window.addEventListener('resize', fitScreen());
         window.player = player
       });
