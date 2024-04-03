@@ -23,7 +23,8 @@
       window.RufflePlayer = window.RufflePlayer || {};
       window.RufflePlayer.config = {
         letterbox: "on",
-        scale: "showAll"
+        scale: "showAll",
+        background: "#181818"
       };
       window.addEventListener("load", (event) => {
         const ruffle = window.RufflePlayer.newest();
@@ -101,6 +102,7 @@
       }
       #navbar {
         display: flex;
+        align-items: center;
       }
       #navbar label {
         flex: 1;
