@@ -22,6 +22,8 @@
       }
       window.RufflePlayer = window.RufflePlayer || {};
       window.RufflePlayer.config = {
+        autoplay: "on",
+        unmuteOverlay: "hidden",
         letterbox: "on",
         scale: "showAll",
         background: "#181818"
@@ -144,7 +146,10 @@
       <label>Fsh</label>
       <label style="text-align:center">Drop a file or select one <input type="file" accept=".swf" onchange="fileHandle(event)"></label>
       <label style="text-align:right;margin-right:10px;">Options:</label>
-      <button onclick="window.player.enterFullscreen()" aria-label="fullscreen"><i class="fa-solid fa-expand"></i></button></div>
+      <button onclick="window.player.enterFullscreen()" aria-label="fullscreen"><i class="fa-solid fa-expand"></i></button>
+      <button onclick="window.player.pause()" aria-label="pause"><i class="fa-solid fa-pause"></i></button></div>
+      <p></p>
+    </div>
     <RufflePlayer id="container"></RufflePlayer>
   </body>
 </html>
