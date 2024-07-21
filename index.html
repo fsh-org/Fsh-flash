@@ -42,8 +42,12 @@
         window.player = player;
         // Adding extra functions smh
         window.player.toggleVolumeControls = function(){
-          window.player.volumeControls.classList.value.includes('hidden') ? window.player.openVolumeControls() : window.player.volumeControls.classList.add('hidden');
+          window.player.volumeContols.classList.value.includes('hidden') ? window.player.openVolumeControls() : window.player.volumeControls.classList.add('hidden');
         }
+        // Force dark mode and our colors
+        let style = window.player.shadowRoot.querySelector('style');
+        style.innerHTML = style.innerHTML.replace(`@media (prefers-color-scheme:light){:host{--modal-background:#fafafa;--modal-foreground-rgb:0,0,0;--modal-foreground-filter:none}}@media (prefers-color-scheme:dark){:host{--modal-background:#282828;--modal-foreground-rgb:221,221,221;--modal-foreground-filter:invert(90%)}}`, `:host{--modal-background:var(--bg-light);--modal-foreground-rgb:255,255,255;--modal-foreground-filter:invert(90%)}`);
+        style.innerHTML = style.innerHTML.replace('border:1px solid gray;', 'border-radius:12px;');
         // Add resie event listener and size player
         window.addEventListener('resize', fitScreen);
         fitScreen()
@@ -125,8 +129,6 @@
         width: 100vw;
         height: 100vh;
         --splash-screen-background: var(--bg);
-        --modal-background: var(--bg-light);
-        --modal-foreground-rgb: var(--text);
       }
       #navbar {
         display: flex;
