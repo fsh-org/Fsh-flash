@@ -16,11 +16,13 @@
     <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
     <link rel="manifest" href="/install.json">
     <script>
+      // Make player fit screen
       function fitScreen() {
         let nav = document.getElementById("navbar").getBoundingClientRect();
         window.player.width = window.innerWidth;
         window.player.height = window.innerHeight - nav.height;
       }
+      // Create the ruffle player
       window.RufflePlayer = window.RufflePlayer || {};
       window.RufflePlayer.config = {
         autoplay: "on",
@@ -29,16 +31,25 @@
         scale: "showAll",
         background: "#181818"
       };
+      // On load set up ruffle
       window.addEventListener("load", (event) => {
+        // Adding player
         const ruffle = window.RufflePlayer.newest();
         const player = ruffle.createPlayer();
         const container = document.getElementById("container");
         container.appendChild(player);
-        window.player = player
+        // Making public
+        window.player = player;
+        // Adding extra functions smh
+        window.player.toggleVolumeControls = function(){
+          window.player.volumeControls.classList.value.includes('hidden') ? window.player.openVolumeControls() : window.player.volumeControls.classList.add('hidden');
+        }
+        // Add resie event listener and size player
         window.addEventListener('resize', fitScreen);
         fitScreen()
       });
 
+      // When file dropped
       function dropHandler(ev) {
         ev.stopPropagation();
         ev.preventDefault();
@@ -64,6 +75,7 @@
         }
       }
 
+      // When file dragged over screen
       function dragOverHandler(ev) {
         ev.stopPropagation();
         ev.preventDefault();
@@ -81,11 +93,13 @@
           z-index: 9999999;
         }`;
       }
+      // When dragged file leaves
       function dragLeaveHandler(ev) {
         ev.stopPropagation();
         ev.preventDefault();
         document.getElementById('style').innerHTML = ``;
       }
+      // Pre process files
       function fileHandle(ev) {
         ob = {
           stopPropagation: function(){},
@@ -110,7 +124,9 @@
         display: block;
         width: 100vw;
         height: 100vh;
-        --splash-screen-background:#181818;
+        --splash-screen-background: var(--bg);
+        --modal-background: var(--bg-light);
+        --modal-foreground-rgb: var(--text);
       }
       #navbar {
         display: flex;
@@ -145,7 +161,8 @@
       <label style="text-align:center;flex:1;">Drop a file or select one <input type="file" accept=".swf" onchange="fileHandle(event)"></label>
       <label style="text-align:right;margin-right:10px;">Options:</label>
       <button onclick="window.player.enterFullscreen()" aria-label="fullscreen"><i class="fa-solid fa-expand"></i></button>
-      <button onclick="window.player.pause()" aria-label="pause"><i class="fa-solid fa-pause"></i></button></div>
+      <button onclick="window.player.pause()" aria-label="pause"><i class="fa-solid fa-pause"></i></button>
+      <button onclick="window.player.toggleVolumeControls()" aria-label="volume controls"><i class="fa-solid fa-volume-high"></i></button>
     </div>
     <RufflePlayer id="container"></RufflePlayer>
   </body>
