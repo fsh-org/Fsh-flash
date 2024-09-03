@@ -46,7 +46,7 @@
         if (!window.player.openVolumeControls) window.player.openVolumeControls = function(){window.player.volumeControls.classList.remove('hidden')};
         if (!window.player.closeVolumeControls) window.player.closeVolumeControls = function(){window.player.volumeControls.classList.add('hidden')};
         window.player.toggleVolumeControls = function(){
-          window.player.volumeContols.classList.value.includes('hidden') ? window.player.openVolumeControls() : window.player.closeVolumeControls();
+          window.player.volumeControls.classList.value.includes('hidden') ? window.player.openVolumeControls() : window.player.closeVolumeControls();
         }
         // Force dark mode and our colors
         let style = window.player.shadowRoot.querySelector('style');
