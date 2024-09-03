@@ -44,7 +44,7 @@
         // Adding extra functions smh
         if (!window.player.volumeControls) window.player.volumeControls = document.querySelector("#container > ruffle-player").shadowRoot.querySelector("#volume-controls-modal");
         if (!window.player.openVolumeControls) window.player.openVolumeControls = function(){window.player.volumeControls.classList.remove('hidden')};
-        if (!window.player.closeVolumeControls) window.player.openVolumeControls = function(){window.player.volumeControls.classList.add('hidden')};
+        if (!window.player.closeVolumeControls) window.player.closeVolumeControls = function(){window.player.volumeControls.classList.add('hidden')};
         window.player.toggleVolumeControls = function(){
           window.player.volumeContols.classList.value.includes('hidden') ? window.player.openVolumeControls() : window.player.closeVolumeControls();
         }
