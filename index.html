@@ -42,7 +42,7 @@
         // Making public
         window.player = player;
         // Adding extra functions smh
-        if (!window.player.volumeContols) window.player.volumeContols = document.querySelector("#container > ruffle-player").shadowRoot.querySelector("#volume-controls-modal");
+        if (!window.player.volumeControls) window.player.volumeControls = document.querySelector("#container > ruffle-player").shadowRoot.querySelector("#volume-controls-modal");
         if (!window.player.openVolumeControls) window.player.openVolumeControls = function(){window.player.volumeControls.classList.remove('hidden')};
         if (!window.player.closeVolumeControls) window.player.openVolumeControls = function(){window.player.volumeControls.classList.add('hidden')};
         window.player.toggleVolumeControls = function(){
