@@ -157,6 +157,15 @@
         --modal-foreground-rgb: 221,221,221 !important;
         --modal-foreground-filter: invert(90%) !important;
       }
+      #context-menu {
+        overflow: hidden;
+      }
+      #context-menu .menu-item {
+        transition: padding 500ms;
+      }
+      #context-menu .menu-item:not(.disabled):hover {
+        padding: 5px 10px 5px 14px;
+      }
     </style>
     <style id="style"></style>
   </head>
