@@ -47,6 +47,9 @@
         // Force dark mode and our colors
         let style = window.player.shadowRoot.querySelector('style');
         style.innerHTML = style.innerHTML.replace('border:1px solid gray;', 'border-radius:12px;');
+        style.innerHTML = style.innerHTML.replace('#context-menu{', '#context-menu{overflow:hidden;');
+        style.innerHTML = style.innerHTML.replace('#context-menu .menu-item{', '#context-menu .menu-item{transition:padding 500ms;');
+        style.innerHTML = style.innerHTML.replace('#context-menu .menu-item:not(.disabled):hover{', '#context-menu .menu-item:not(.disabled):hover{padding:5px 10px 5px 14px;');
         // Add resie event listener and size player
         window.addEventListener('resize', fitScreen);
         fitScreen()
@@ -156,15 +159,6 @@
         --modal-background: var(--bg-2) !important;
         --modal-foreground-rgb: 221,221,221 !important;
         --modal-foreground-filter: invert(90%) !important;
-      }
-      #context-menu {
-        overflow: hidden;
-      }
-      #context-menu .menu-item {
-        transition: padding 500ms;
-      }
-      #context-menu .menu-item:not(.disabled):hover {
-        padding: 5px 10px 5px 14px;
       }
     </style>
     <style id="style"></style>
