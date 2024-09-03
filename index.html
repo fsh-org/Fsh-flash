@@ -29,7 +29,7 @@
         unmuteOverlay: "hidden",
         letterbox: "on",
         openUrlMode: "confirm",
-        scale: "noborder",
+        scale: "showAll",
         background: "#181818"
       };
       // On load set up ruffle
@@ -127,10 +127,10 @@
         transition: 500ms;
         overflow: hidden;
       }
-      RufflePlayer {
+      RufflePlayer, ruffle-player {
         display: block;
         width: 100vw;
-        height: 100vh;
+        height: calc(100vh - 21px);
         --splash-screen-background: var(--bg-1);
       }
       #navbar {
