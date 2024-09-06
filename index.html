@@ -120,6 +120,15 @@
         };
         dropHandler(ob)
       }
+      // URL
+      function urlHandle(url) {
+        alert('unfinished')
+        fetch('https://api.fsh.plus/file?url='+url)
+          .then(res=>res.json())
+          .then(res=>{
+            let file = new File([uint8], "test.jpg");
+          })
+      }
     </script>
     <script src="https://kit.fontawesome.com/50eb963274.js" crossorigin="anonymous"></script>
     <style>
@@ -140,11 +149,14 @@
         display: flex;
         align-items: center;
       }
-      #navbar button {
+      #navbar button:not(.keep) {
         padding: 0;
         border-radius: 0;
         margin-right: 8px;
         border: none;
+      }
+      .keep {
+        margin:0;padding:0px 4px;
       }
       #sub {
         display: none;
@@ -158,6 +170,14 @@
         border: none;
         padding: 0;
       }
+      .up {
+        text-align: center;
+        flex: 1;
+      }
+      .opts {
+        text-align: right;
+        margin-right: 10px;
+      }
       /* Force dark mode and our colors */
       * {
         --modal-background: var(--bg-2) !important;
@@ -169,11 +189,19 @@
   </head>
   <body ondrop="dropHandler(event)" ondragover="dragOverHandler(event)" ondragleave="dragLeaveHandler(event)">
     <div id="sub">Drop swf file anywhere to view</div>
+    <dialog id="selection">
+      <p>Drag and drop a file</p>
+      <hr>
+      <input type="file" accept=".swf" onchange="fileHandle(event)">
+      <hr>
+      <input type="url" id="urlswf" onchange="if(!this.value.includes('://')){this.value='https://'+this.value}">
+      <button onclick="urlHandle(document.getElementById('urlswf').value)">Get</button>
+    </dialog>
     <div id="navbar">
       <img src="https://fsh.plus/fsh.png" height="16">
       <label>Fsh</label>
-      <label style="text-align:center;flex:1;">Drop a file or select one <input type="file" accept=".swf" onchange="fileHandle(event)"></label>
-      <label style="text-align:right;margin-right:10px;">Options:</label>
+      <label class="up">Drop a file or <button class="keep" onclick="document.getElementById('selection').openModal()">Select one</button></label>
+      <label class="opts">Options:</label>
       <button onclick="window.player.enterFullscreen()" aria-label="fullscreen"><i class="fa-solid fa-expand"></i></button>
       <button onclick="window.player.pause()" aria-label="pause"><i class="fa-solid fa-pause"></i></button>
       <button onclick="window.player.toggleVolumeControls()" aria-label="volume controls"><i class="fa-solid fa-volume-high"></i></button>
