@@ -121,3 +121,7 @@ function urlHandle(url) {
       dropHandler(ob)
     })
 }
+let searchParams = new URLSearchParams(location.search);
+if (searchParams.has('url')) {
+  urlHandle(searchParams.get('url'));
+}
