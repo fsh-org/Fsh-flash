@@ -122,6 +122,8 @@ function urlHandle(url) {
     })
 }
 let searchParams = new URLSearchParams(location.search);
-if (searchParams.has('url')) {
-  urlHandle(searchParams.get('url'));
-}
+window.addEventListener("DOMContentLoaded", () => {
+  if (searchParams.has('url')) {
+    urlHandle(searchParams.get('url'));
+  }
+});
