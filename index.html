@@ -89,6 +89,7 @@
       function dragOverHandler(ev) {
         ev.stopPropagation();
         ev.preventDefault();
+        document.getElementById('selection').close();
         document.getElementById('style').innerHTML = `#sub {
           display:block !important;
           transform: translate(-50%, -50%);
@@ -111,6 +112,7 @@
       }
       // Pre process files
       function fileHandle(ev) {
+        document.getElementById('selection').close();
         ob = {
           stopPropagation: function(){},
           preventDefault: function(){},
@@ -122,11 +124,19 @@
       }
       // URL
       function urlHandle(url) {
-        alert('unfinished')
+        document.getElementById('selection').close();
         fetch('https://api.fsh.plus/file?url='+url)
-          .then(res=>res.json())
+          .then(res=>res.arrayBuffer())
           .then(res=>{
-            let file = new File([uint8], "test.jpg");
+            let file = new File([res], "file.swf");
+            ob = {
+              stopPropagation: function(){},
+              preventDefault: function(){},
+              dataTransfer: {
+                files: Array.from([file])
+              }
+            };
+            dropHandler(ob)
           })
       }
     </script>
