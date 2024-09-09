@@ -1,6 +1,7 @@
 # Open Fsh 1.0
-Released: 09/09/24 (dd/mm/yy)
-Authored: Fsh org
+Released: 09/09/24 (dd/mm/yy)\
+Authored: Fsh org\
+You can find the original license at https://github.com/fsh-org/Open-Fsh-license
 
 ## Disclaimer
 This is not a open source license as of version 1.9 of the [open source definition](https://opensource.org/osd), it is a source-available license.
