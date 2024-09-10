@@ -1,6 +1,4 @@
 body {
-  margin: 0;
-  padding: 0;
   min-height: 100vh;
   transition: 500ms;
   overflow: hidden;
@@ -15,11 +13,12 @@ RufflePlayer, ruffle-player {
   display: flex;
   align-items: center;
 }
-#navbar button:not(.keep) {
-  padding: 0;
-  border-radius: 0;
-  margin-right: 8px;
-  border: none;
+.link {
+  display: flex;
+  height: 21px;
+  align-items: center;
+  color: var(--text-1);
+  text-decoration: none;
 }
 .keep {
   margin: 0;
@@ -37,18 +36,27 @@ input[type="file"]::file-selector-button {
   border: none;
   padding: 0;
 }
+#urlswf {
+  width: 80%;
+  box-sizing: border-box;
+}
 .up {
   text-align: center;
   flex: 1;
 }
 .opts {
-  text-align: right;
-  margin-right: 10px;
+  display: flex;
+  align-items: center;
 }
-#urlswf {
-  width: 80%;
-  box-sizing: border-box;
+.opts p {
+  margin: 0;
 }
+.opts button {
+  padding: 0px 4px;
+  border-radius: 0;
+  border: none;
+}
+
 /* Force dark mode and our colors */
 * {
   --modal-background: var(--bg-2) !important;
