@@ -107,7 +107,7 @@ function fileHandle(ev) {
 // URL
 function urlHandle(url) {
   document.getElementById('selection').close();
-  fetch('https://api.fsh.plus/file?url='+url)
+  fetch('https://api.fsh.plus/file?url='+encodeURIComponent(url))
     .then(res=>res.arrayBuffer())
     .then(res=>{
       let file = new File([res], "file.swf");
