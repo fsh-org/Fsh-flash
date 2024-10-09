@@ -56,12 +56,14 @@ function dropHandler(ev) {
           return;
         }
         window.player.load(URL.createObjectURL(file));
+        document.getElementById('container').focus();
         fitScreen()
       }
     };
   } else {
     ev.dataTransfer.files.forEach((file, i) => {
       window.player.load(URL.createObjectURL(file));
+      document.getElementById('container').focus();
       fitScreen()
     });
   }
