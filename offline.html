@@ -48,13 +48,13 @@
         window.addEventListener('resize', fitScreen);
         fitScreen()
       });
-      
+
       // When file dropped
       function dropHandler(ev) {
         ev.stopPropagation();
         ev.preventDefault();
         document.getElementById('style').innerHTML = ``;
-      
+
         if (ev.dataTransfer.items) {
           for (let i = 0; i<ev.dataTransfer.items.length; i++) {
             if (ev.dataTransfer.items[i].kind === "file") {
@@ -76,7 +76,7 @@
           });
         }
       }
-      
+
       // When file dragged over screen
       function dragOverHandler(ev) {
         ev.stopPropagation();
@@ -139,24 +139,36 @@
       });
     </script>
     <style>
+      /* -- Main styling for fsh pages -- */
+
+      /* -- Vars -- */
+      @import url("https://fonts.googleapis.com/css?family=Lexend&display=swap");
       :root {
         --bg-0: #0c0c0c;
         --bg-1: #181818;
         --bg-2: #252525;
         --bg-3: #333333;
-      
+
         --text-0: #ffffff;
         --text-1: #dddddd;
         --text-2: #bbbbbb;
         --text-3: #888888;
+
+        --accent-1: #38bdf8; /*Tailwind: sky 400*/
+        --accent-2: #0ea5e9; /*Tailwind: sky 500*/
       }
+
+      /* -- General styling -- */
       body {
         color: var(--text-1);
         background-color: var(--bg-1);
-        font-family: 'Arial';
+        font-family: 'Lexend', 'Arial';
         margin: 0px;
         padding: 0px;
         caret-color: transparent;
+      }
+      h1, h2, p {
+        margin: 2px;
       }
       img {
         user-drag: none;
@@ -176,6 +188,49 @@
           transition: none !important;
         }
       }
+
+      /* -- Dialogs -- */
+      dialog {
+        padding: 10px;
+        color: var(--text-1);
+        border-radius: 1rem;
+        background-color: var(--bg-1);
+        border: 2px var(--text-1) solid;
+      }
+      ::backdrop {
+        backdrop-filter: blur(2px);
+      }
+
+      /* -- Scrollbar -- */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg-1);
+      }
+      ::-webkit-scrollbar-corner { 
+        background: var(--bg-1);
+      }
+      ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: var(--text-3);
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: var(--bg-3);
+      }
+
+      /* -- Links -- */
+      a {
+        cursor: pointer;
+        color: var(--accent-1);
+        transition: color 250ms ease;
+      }
+      a:hover {
+        color: var(--accent-2);
+      }
+
+      /* -- Inputs -- */
       button {
         cursor: pointer;
         padding: 5px;
@@ -196,7 +251,7 @@
         fill: var(--bg-1);
         stroke: var(--bg-1);
       }
-      input {
+      input:not([type=range]), textarea, select {
         margin: 5px;
         padding: 5px;
         outline: none;
@@ -207,16 +262,13 @@
         border: 2px var(--text-1) solid;
         background-color: transparent;
       }
-      input[type=file]::file-selector-button {
-        outline: none;
-        font-weight: bold;
-        caret-color: auto;
-        color: var(--text-1);
-        border-radius: 0.25rem;
-        border: 2px var(--text-1) solid;
-        background-color: transparent;
+      option {
+        background-color: var(--bg-1);
       }
-      button:focus-within, input:focus-within {
+      option:disabled {
+        background-color: var(--bg-0);
+      }
+      button:focus-within, input:focus-within, textarea:focus-within, select:focus-within {
         outline: 1px solid var(--text-0);
       }
     </style>
@@ -279,7 +331,7 @@
         border-radius: 0;
         border: none;
       }
-      
+
       /* Force dark mode and our colors */
       * {
         --modal-background: var(--bg-2) !important;
