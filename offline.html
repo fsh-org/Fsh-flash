@@ -142,7 +142,6 @@
       /* -- Main styling for fsh pages -- */
 
       /* -- Vars -- */
-      @import url("https://fonts.googleapis.com/css?family=Lexend&display=swap");
       :root {
         --bg-0: #0c0c0c;
         --bg-1: #181818;
@@ -259,6 +258,15 @@
         caret-color: auto;
         color: var(--text-1);
         border-radius: 0.75rem;
+        border: 2px var(--text-1) solid;
+        background-color: transparent;
+      }
+      input[type=file]::file-selector-button {
+        outline: none;
+        font-weight: bold;
+        caret-color: auto;
+        color: var(--text-1);
+        border-radius: 0.25rem;
         border: 2px var(--text-1) solid;
         background-color: transparent;
       }
