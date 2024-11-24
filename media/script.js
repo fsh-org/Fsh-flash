@@ -15,7 +15,7 @@ window.RufflePlayer.config = {
   background: "#181818"
 };
 // On load set up ruffle
-window.addEventListener("load", (event) => {
+window.addEventListener("load", () => {
   // Adding player
   const ruffle = window.RufflePlayer.newest();
   const player = ruffle.createPlayer();
@@ -59,9 +59,9 @@ function dropHandler(ev) {
         document.getElementById('container').focus();
         fitScreen()
       }
-    };
+    }
   } else {
-    ev.dataTransfer.files.forEach((file, i) => {
+    ev.dataTransfer.files.forEach((file) => {
       window.player.load(URL.createObjectURL(file));
       document.getElementById('container').focus();
       fitScreen()
