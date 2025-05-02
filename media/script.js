@@ -7,12 +7,15 @@ function fitScreen() {
 // Create the ruffle player
 window.RufflePlayer = window.RufflePlayer || {};
 window.RufflePlayer.config = {
-  autoplay: "on",
-  unmuteOverlay: "hidden",
-  letterbox: "on",
-  openUrlMode: "confirm",
-  scale: "showAll",
-  background: "#181818"
+  autoplay: 'on',
+  unmuteOverlay: 'hidden',
+  letterbox: 'on',
+  openUrlMode: 'confirm',
+  scale: 'showAll',
+  background: '#181818',
+  urlRewriteRules: [
+    [/^https?:\/\/.*$/, 'https://api.fsh.plus/file?url=$&']
+  ]
 };
 // On load set up ruffle
 window.addEventListener("load", () => {
@@ -38,7 +41,7 @@ window.addEventListener("load", () => {
   style.innerHTML = style.innerHTML.replace('#context-menu .menu-item:not(.disabled):hover{', '#context-menu .menu-item:not(.disabled):hover{padding:5px 10px 5px 14px;');
   // Add resie event listener and size player
   window.addEventListener('resize', fitScreen);
-  fitScreen()
+  fitScreen();
 });
 
 // When file dropped
@@ -52,19 +55,19 @@ function dropHandler(ev) {
       if (ev.dataTransfer.items[i].kind === "file") {
         const file = ev.dataTransfer.items[i].getAsFile();
         if (file.type != 'application/x-shockwave-flash') {
-          alert('File must be shockwave flash')
+          alert('File must be shockwave flash');
           return;
         }
         window.player.load(URL.createObjectURL(file));
         document.getElementById('container').focus();
-        fitScreen()
+        fitScreen();
       }
     }
   } else {
     ev.dataTransfer.files.forEach((file) => {
       window.player.load(URL.createObjectURL(file));
       document.getElementById('container').focus();
-      fitScreen()
+      fitScreen();
     });
   }
 }
@@ -104,7 +107,7 @@ function fileHandle(ev) {
       files: Array.from(ev.target.files)
     }
   };
-  dropHandler(ob)
+  dropHandler(ob);
 }
 // URL
 function urlHandle(url) {
@@ -120,7 +123,7 @@ function urlHandle(url) {
           files: Array.from([file])
         }
       };
-      dropHandler(ob)
+      dropHandler(ob);
     })
 }
 let searchParams = new URLSearchParams(location.search);
