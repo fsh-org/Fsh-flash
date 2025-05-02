@@ -14,7 +14,7 @@ window.RufflePlayer.config = {
   scale: 'showAll',
   background: '#181818',
   urlRewriteRules: [
-    [/^https?:\/\/.*$/, 'https://api.fsh.plus/file?url=$&']
+    [/^https?:\/\/(.*$)/, 'https://api.fsh.plus/file?url=https://$1']
   ]
 };
 // On load set up ruffle
