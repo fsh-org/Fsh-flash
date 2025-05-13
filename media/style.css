@@ -3,6 +3,15 @@ body {
   transition: 500ms;
   overflow: hidden;
 }
+.modal-close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: none;
+}
 RufflePlayer, ruffle-player {
   display: block;
   width: 100vw;
@@ -28,32 +37,31 @@ RufflePlayer, ruffle-player {
   display: none;
 }
 input[type="file"] {
-  margin: 0;
-  padding: 0px 5px;
-  border-radius: 0.5rem;
-}
-input[type="file"]::file-selector-button {
+  margin: 0px;
+  padding: 0px;
   border: none;
-  padding: 0;
+  border-radius: 0px;
 }
 #urlswf {
   width: 80%;
   box-sizing: border-box;
 }
-.up {
-  text-align: center;
-  flex: 1;
-}
 .opts {
   display: flex;
+  gap: 5px;
   align-items: center;
 }
 .opts p {
-  margin: 0;
+  margin: 0px;
 }
 .opts button {
-  padding: 0px 4px;
-  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 21px;
+  height: 21px;
+  padding: 0px;
+  border-radius: 0px;
   border: none;
 }
 

@@ -17,13 +17,13 @@
     <link rel="manifest" href="/media/install.json">
     <script src="https://cdn.jsdelivr.net/npm/@ruffle-rs/ruffle"></script>
     <script src="/media/script.js"></script>
-    <script src="https://kit.fontawesome.com/50eb963274.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/media/style.css">
     <style id="style"></style>
   </head>
   <body ondrop="dropHandler(event)" ondragover="dragOverHandler(event)" ondragleave="dragLeaveHandler(event)">
     <div id="sub">Drop swf file anywhere to view</div>
     <dialog id="selection">
+      <button onclick="this.parentElement.close()" class="modal-close">x</button>
       <p>Drag and drop a file</p>
       <hr>
       <input type="file" accept=".swf" onchange="fileHandle(event)">
@@ -36,13 +36,15 @@
         <img src="https://fsh.plus/fsh.png" width="21" height="21">
         <span>Fsh</span>
       </a>
-      <label class="up">Drop a file or <button class="keep" onclick="document.getElementById('selection').showModal()">Select one</button></label>
-      <label class="opts">
+      <span style="flex:1"></span>
+      <span class="up">Drop a file or <button class="keep" onclick="document.getElementById('selection').showModal()">Select one</button></span>
+      <span style="flex:1"></span>
+      <span class="opts">
         <p>Actions:</p>
-        <button onclick="window.player.enterFullscreen()" aria-label="fullscreen"><svg width="15" height="15" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M160 5C160 2.23858 162.239 0 165 0H251C253.761 0 256 2.23858 256 5V91C256 93.7614 253.761 96 251 96H213C210.239 96 208 93.7614 208 91V53C208 50.2386 205.761 48 203 48H165C162.239 48 160 45.7614 160 43V5Z"></path><path d="M0 5C0 2.23857 2.23858 0 5 0H91C93.7614 0 96 2.23858 96 5V43C96 45.7614 93.7614 48 91 48H53C50.2386 48 48 50.2386 48 53V91C48 93.7614 45.7614 96 43 96H5C2.23858 96 0 93.7614 0 91V5Z"></path><path d="M203 208C205.761 208 208 205.761 208 203V165C208 162.239 210.239 160 213 160H251C253.761 160 256 162.239 256 165V251C256 253.761 253.761 256 251 256H165C162.239 256 160 253.761 160 251V213C160 210.239 162.239 208 165 208H203Z"></path><path d="M0 165C0 162.239 2.23858 160 5 160H43C45.7614 160 48 162.239 48 165V203C48 205.761 50.2386 208 53 208H91C93.7614 208 96 210.239 96 213V251C96 253.761 93.7614 256 91 256H5C2.23857 256 0 253.761 0 251V165Z"></path></svg></button>
-        <button onclick="window.player.pause()" aria-label="pause"><svg height="18" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><rect x="43" y="28" width="50" height="200" rx="10"></rect><rect x="163" y="28" width="50" height="200" rx="10"></rect></svg></button>
-        <button onclick="window.player.toggleVolumeControls()" aria-label="volume controls"><i class="fa-solid fa-volume-high"></i></button>
-      </label>
+        <button onclick="window.player.enterFullscreen()" aria-label="fullscreen"><svg width="18" height="18" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M160 5C160 2.23858 162.239 0 165 0H251C253.761 0 256 2.23858 256 5V91C256 93.7614 253.761 96 251 96H213C210.239 96 208 93.7614 208 91V53C208 50.2386 205.761 48 203 48H165C162.239 48 160 45.7614 160 43V5Z"></path><path d="M0 5C0 2.23857 2.23858 0 5 0H91C93.7614 0 96 2.23858 96 5V43C96 45.7614 93.7614 48 91 48H53C50.2386 48 48 50.2386 48 53V91C48 93.7614 45.7614 96 43 96H5C2.23858 96 0 93.7614 0 91V5Z"></path><path d="M203 208C205.761 208 208 205.761 208 203V165C208 162.239 210.239 160 213 160H251C253.761 160 256 162.239 256 165V251C256 253.761 253.761 256 251 256H165C162.239 256 160 253.761 160 251V213C160 210.239 162.239 208 165 208H203Z"></path><path d="M0 165C0 162.239 2.23858 160 5 160H43C45.7614 160 48 162.239 48 165V203C48 205.761 50.2386 208 53 208H91C93.7614 208 96 210.239 96 213V251C96 253.761 93.7614 256 91 256H5C2.23857 256 0 253.761 0 251V165Z"></path></svg></button>
+        <button onclick="window.player.pause()" aria-label="pause"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><rect x="19" width="64" height="256" rx="15"/><rect x="173" width="64" height="256" rx="15"/></svg></button>
+        <button onclick="window.player.toggleVolumeControls()" aria-label="volume controls"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><path d="M144 23.875C144 15.6598 150.692 8.89306 158.826 10.0472C168.438 11.4111 177.863 14.0985 186.861 18.0583C200.449 24.0386 212.796 32.8041 223.196 43.8543C233.596 54.9045 241.846 68.0229 247.475 82.4607C253.103 96.8984 256 112.373 256 128C256 143.627 253.103 159.102 247.475 173.539C241.846 187.977 233.596 201.096 223.196 212.146C212.796 223.196 200.449 231.961 186.861 237.942C177.863 241.902 168.438 244.589 158.826 245.953C150.692 247.107 144 240.34 144 232.125C144 223.91 150.717 217.39 158.788 215.856C164.725 214.728 170.546 212.921 176.145 210.456C186.337 205.971 195.597 199.397 203.397 191.109C211.197 182.822 217.384 172.983 221.606 162.155C225.827 151.326 228 139.72 228 128C228 116.28 225.827 104.674 221.606 93.8455C217.384 83.0172 211.197 73.1784 203.397 64.8907C195.597 56.6031 186.337 50.029 176.145 45.5438C170.546 43.0794 164.726 41.2721 158.788 40.1439C150.717 38.6103 144 32.0902 144 23.875Z"/><path d="M143.5 64.3875C143.5 56.9938 149.546 50.8729 156.808 52.2643C161.876 53.2354 166.844 54.7609 171.627 56.8232C180.545 60.6677 188.647 66.3027 195.472 73.4063C202.297 80.51 207.711 88.9433 211.405 98.2247C215.099 107.506 217 117.454 217 127.5C217 137.546 215.099 147.494 211.405 156.775C207.711 166.057 202.297 174.49 195.472 181.594C188.647 188.697 180.545 194.332 171.627 198.177C166.844 200.239 161.876 201.765 156.808 202.736C149.546 204.127 143.5 198.006 143.5 190.613C143.5 183.219 149.616 177.409 156.699 175.29C158.422 174.774 160.12 174.157 161.783 173.44C167.579 170.941 172.846 167.278 177.282 162.661C181.718 158.044 185.237 152.562 187.638 146.529C190.039 140.496 191.275 134.03 191.275 127.5C191.275 120.97 190.039 114.504 187.638 108.471C185.237 102.438 181.718 96.9565 177.282 92.3391C172.846 87.7217 167.579 84.059 161.783 81.5601C160.12 80.8431 158.422 80.226 156.699 79.7104C149.616 77.5911 143.5 71.7812 143.5 64.3875Z"/><path d="M0 84C0 72.9543 8.95431 64 20 64H43.0513C46.8724 64 50.5493 62.5418 53.3318 59.923L114.259 2.57959C116.02 0.922635 118.346 0 120.764 0C128.626 0 135 6.37375 135 14.2362V241.764C135 249.626 128.626 256 120.764 256C118.346 256 116.02 255.077 114.259 253.42L53.3318 196.077C50.5493 193.458 46.8724 192 43.0513 192H20C8.9543 192 0 183.046 0 172V84Z"/></svg></button>
+      </span>
     </div>
     <RufflePlayer id="container"></RufflePlayer>
   </body>
