@@ -65,6 +65,12 @@ input[type="file"] {
   border: none;
 }
 
+@media (max-width: 700px) {
+  .mobile-hide {
+    display: none;
+  }
+}
+
 /* Force dark mode and our colors */
 * {
   --modal-background: var(--bg-2) !important;
