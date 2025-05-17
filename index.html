@@ -26,7 +26,7 @@
       <button onclick="this.parentElement.close()" class="modal-close">x</button>
       <p>Drag and drop a file</p>
       <hr>
-      <input type="file" accept=".swf" onchange="fileHandle(event)">
+      <input type="file" accept=".swf" onchange="fileHandle(event)" placeholder="URL">
       <hr>
       <input type="url" id="urlswf" onchange="if(!this.value.includes('://')){this.value='https://'+this.value}">
       <button onclick="urlHandle(document.getElementById('urlswf').value)">Get</button>
