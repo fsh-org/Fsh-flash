@@ -1,6 +1,5 @@
 body {
-  min-height: 100vh;
-  transition: 500ms;
+  height: 100dvh;
   overflow: hidden;
 }
 .modal-close {
@@ -14,8 +13,8 @@ body {
 }
 RufflePlayer, ruffle-player {
   display: block;
-  width: 100vw;
-  height: calc(100vh - 21px);
+  width: 100dvw;
+  height: calc(100dvh - 21px);
   --splash-screen-background: var(--bg-1);
 }
 #navbar {
