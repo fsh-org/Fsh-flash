@@ -34,6 +34,16 @@ RufflePlayer, ruffle-player {
 }
 #sub {
   display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 50px;
+  border-radius: 1rem;
+  background-color: var(--bg-2);
+  text-align: center;
+  font-size: 250%;
+  z-index: 9999999;
 }
 input[type="file"] {
   margin: 0px;
