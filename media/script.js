@@ -12,9 +12,9 @@ window.RufflePlayer.config = {
   allowScriptAccess: false,
 
   base: location.href,
-  playerRuntime: 'flashPlayer',
-  playerVersion: 32,
-  urlRewriteRules: [
+  playerRuntime: (localStorage.getItem('air')==='true')?'air':'flashPlayer',
+  playerVersion: parseInt(localStorage.getItem('ver'))||32,
+  urlRewriteRules: (localStorage.getItem('proxy')==='false')?[]:[
     [/^https?:\/\/(.*$)/, 'https://api.fsh.plus/file?url=https://$1']
   ],
 
