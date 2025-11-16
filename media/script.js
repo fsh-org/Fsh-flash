@@ -82,7 +82,7 @@ function dropHandler(ev) {
       loadUrl(URL.createObjectURL(file));
     }
   } else {
-    ev.dataTransfer.files = ev.dataTransfer.files.filter(file=>file.type !== 'application/x-shockwave-flash');
+    ev.dataTransfer.files = ev.dataTransfer.files.filter(file=>file.type === 'application/x-shockwave-flash');
     if (ev.dataTransfer.files.length<1) {
       window.player?.displayMessage('File must be shockwave flash');
       return;
