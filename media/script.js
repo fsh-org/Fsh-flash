@@ -61,7 +61,7 @@ function loadUrl(url) {
   document.getElementById('sub').style.display = '';
   document.getElementById('selection').close();
 
-  window.player.load();
+  window.player.load(url);
   document.getElementById('container').focus();
   fitScreen();
 }
