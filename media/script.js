@@ -13,6 +13,7 @@ window.RufflePlayer.config = {
 
   base: location.href,
   playerRuntime: 'flashPlayer',
+  playerVersion: 32,
   urlRewriteRules: [
     [/^https?:\/\/(.*$)/, 'https://api.fsh.plus/file?url=https://$1']
   ],
@@ -23,6 +24,7 @@ window.RufflePlayer.config = {
   wmode: 'opaque',
   letterbox: 'on',
   showSwfDownload: true,
+  maxExecutionDuration: 30,
   scale: 'showAll',
   openUrlMode: 'confirm',
   allowFullscreen: true
@@ -93,7 +95,10 @@ function dropHandler(ev) {
 function dragHandler(ev, dis='') {
   ev.stopPropagation();
   ev.preventDefault();
-  document.getElementById('sub').style.display = dis;
+  document.getElementById('selection').close();
+  setTimeout(()=>{
+    document.getElementById('sub').style.display = dis;
+  }, (dis===''?50:0));
 }
 
 // Uploaded files

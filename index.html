@@ -25,10 +25,9 @@
       <button onclick="this.parentElement.close()" class="modal-close">x</button>
       <p>Drag and drop a file</p>
       <hr>
-      <label>Upload file: <input type="file" accept=".swf" onchange="fileHandle(event)"></label>
+      <label>File: <input type="file" accept=".swf" onchange="fileHandle(event)"></label>
       <hr>
-      <label>URL: <input type="url" id="urlswf" onchange="if(!this.value.includes('://')){this.value='https://'+this.value}" placeholder="URL"></label>
-      <button onclick="urlHandle(document.getElementById('urlswf').value)">Get</button>
+      <label>URL: <input type="url" id="urlswf" onchange="if(!this.value.includes('://')){this.value='https://'+this.value}" placeholder="SWF URL"><button onclick="urlHandle(document.getElementById('urlswf').value)">Get</button></label>
     </dialog>
     <div id="navbar">
       <a class="link" href="https://fsh.plus">
