@@ -54,6 +54,13 @@ window.addEventListener('load', () => {
   // Add resie event listener and size player
   window.addEventListener('resize', fitScreen);
   fitScreen();
+  // Auto url
+  let searchParams = new URLSearchParams(location.search);
+  window.addEventListener('DOMContentLoaded', () => {
+    if (searchParams.has('url')) {
+      urlHandle(searchParams.get('url'));
+    }
+  });
 });
 
 // Loading files
@@ -116,11 +123,3 @@ function fileHandle(ev) {
 function urlHandle(url) {
   loadUrl('https://api.fsh.plus/file?url='+encodeURIComponent(url));
 }
-
-// Auto url
-let searchParams = new URLSearchParams(location.search);
-window.addEventListener('DOMContentLoaded', () => {
-  if (searchParams.has('url')) {
-    urlHandle(searchParams.get('url'));
-  }
-});
