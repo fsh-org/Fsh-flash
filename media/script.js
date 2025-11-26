@@ -56,11 +56,9 @@ window.addEventListener('load', () => {
   fitScreen();
   // Auto url
   let searchParams = new URLSearchParams(location.search);
-  window.addEventListener('DOMContentLoaded', () => {
-    if (searchParams.has('url')) {
-      urlHandle(searchParams.get('url'));
-    }
-  });
+  if (searchParams.has('url')) {
+    urlHandle(searchParams.get('url'));
+  }
 });
 
 // Loading files
