@@ -72,6 +72,7 @@ function loadUrl(url) {
 }
 
 // Drop handler
+const swfFileTypes = ['application/x-shockwave-flash',''];
 function dropHandler(ev) {
   ev.stopPropagation?.();
   ev.preventDefault?.();
@@ -80,14 +81,14 @@ function dropHandler(ev) {
     for (let i = 0; i<ev.dataTransfer.items.length; i++) {
       if (ev.dataTransfer.items[i].kind!=='file') continue;
       const file = ev.dataTransfer.items[i].getAsFile();
-      if (file.type !== 'application/x-shockwave-flash') {
+      if (!swfFileTypes.includes(file.type)) {
         window.player?.displayMessage('File must be shockwave flash');
         continue;
       }
       loadUrl(URL.createObjectURL(file));
     }
   } else {
-    ev.dataTransfer.files = ev.dataTransfer.files.filter(file=>file.type === 'application/x-shockwave-flash');
+    ev.dataTransfer.files = ev.dataTransfer.files.filter(file=>swfFileTypes.includes(file.type));
     if (ev.dataTransfer.files.length<1) {
       window.player?.displayMessage('File must be shockwave flash');
       return;
