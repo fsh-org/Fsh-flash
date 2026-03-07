@@ -17,6 +17,10 @@ RufflePlayer, ruffle-player {
   height: calc(100dvh - 21px);
   --splash-screen-background: var(--bg-1);
 }
+input, select {
+  margin: 0px !important;
+  padding: 0px;
+}
 #navbar {
   display: flex;
   align-items: center;
