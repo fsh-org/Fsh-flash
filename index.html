@@ -51,14 +51,17 @@
       <br>
       <label>Runtime Version: <input id="s-ver" type="number" value="32" min="1" max="32" onchange="localStorage.setItem('ver',this.value)"></label>
       <br>
+      <label>Run in background: <input id="s-bgrun" type="checkbox" onchange="localStorage.setItem('bgrun',this.checked)"></label>
+      <br>
       <label>Proxy: <input id="s-proxy" type="checkbox" checked onchange="localStorage.setItem('proxy',this.checked)"></label>
       <br>
-      <p>For changes to take effect reload page</p>
+      <p style="color:var(--yellow-1)">For changes to take effect, reload page</p>
       <hr>
       <button onclick="window.player.reload()">Reload swf</button>
       <script>
         document.getElementById('s-run').value = (localStorage.getItem('air')==='true')?'air':'flash';
         document.getElementById('s-ver').value = parseInt(localStorage.getItem('ver'))||32;
+        document.getElementById('s-bgrun').checked = ((localStorage.getItem('bgrun')??'false')==='true');
         document.getElementById('s-proxy').checked = ((localStorage.getItem('proxy')??'true')==='true');
       </script>
     </dialog>
