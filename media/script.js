@@ -95,7 +95,7 @@ function dragHandler(ev, dis='') {
   ev.preventDefault();
   document.getElementById('selection').close();
   setTimeout(()=>{
-    document.getElementById('sub')..display = dis;
+    document.getElementById('sub').style.display = dis;
   }, (dis===''?50:0));
 }
 
