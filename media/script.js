@@ -45,21 +45,12 @@ window.addEventListener('load', () => {
   window.player.toggleVolumeControls = function(){
     window.player.volumeControls.classList.value.includes('hidden') ? window.player.openVolumeControls() : window.player.closeVolumeControls();
   }
-  // Force dark mode and our colors
-  let style = window.player.shadowRoot.querySelector('style');
-  style.innerHTML = style.innerHTML
-    .replace('border:1px solid gray;', 'border-radius:12px;')
-    .replace('#context-menu{', '#context-menu{overflow:hidden;')
-    .replace('#context-menu .menu-item{', '#context-menu .menu-item{transition:padding 500ms;')
-    .replace('#context-menu .menu-item:not(.disabled):hover{', '#context-menu .menu-item:not(.disabled):hover{padding:5px 10px 5px 14px;');
   // Add resie event listener and size player
   window.addEventListener('resize', fitScreen);
   fitScreen();
   // Auto url
   let searchParams = new URLSearchParams(location.search);
-  if (searchParams.has('url')) {
-    urlHandle(searchParams.get('url'));
-  }
+  if (searchParams.has('url')) urlHandle(searchParams.get('url'));
 });
 
 // Loading files
@@ -104,19 +95,14 @@ function dragHandler(ev, dis='') {
   ev.preventDefault();
   document.getElementById('selection').close();
   setTimeout(()=>{
-    document.getElementById('sub').style.display = dis;
+    document.getElementById('sub')..display = dis;
   }, (dis===''?50:0));
 }
 
 // Uploaded files
 function fileHandle(ev) {
   document.getElementById('selection').close();
-  ob = {
-    dataTransfer: {
-      files: Array.from(ev.target.files)
-    }
-  };
-  dropHandler(ob);
+  dropHandler({ dataTransfer: { files: Array.from(ev.target.files) } });
 }
 
 // URL load
